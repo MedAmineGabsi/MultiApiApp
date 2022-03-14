@@ -1,24 +1,30 @@
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Corona from "./pages/Corona";
+import Flags from "./pages/Flags";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <div className="App">
-      <div className="navbar">
-        <h1>Multi API App</h1>
-      </div>
-
-      <div className="container">
-        <h2 align="center" style={{ color: "#fff" }}>
-          Welcome to the multi api app, <br /> Choose the options below:
-        </h2>
-        <div className="row">
-          <div className="capsule">
-            <button className="button green">Corona</button>
-            <button className="button red">Flags</button>
-          </div>
+    <BrowserRouter>
+      <div className="App">
+        <div className="navbar">
+          <h1>Multi API App</h1>
         </div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/country">
+            <Flags />
+          </Route>
+          <Route exact path="/covid">
+            <Corona />
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
 
