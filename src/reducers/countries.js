@@ -4,14 +4,14 @@ import {
   SUCCESS_COUNTRY_DATA,
 } from "../constants/flags";
 
-const countriesCounter = (state = { loading: true, countries: [] }, action) => {
+const countriesCounter = (state = { loading: true, countries: [], fetched: false }, action) => {
   switch (action.type) {
     case REQUEST_COUNTRY_DATA:
-      return { loading: true, countries: [] };
+      return { loading: true, countries: [], fetched: false };
     case SUCCESS_COUNTRY_DATA:
-      return { loading: false, countries: action.payload };
+      return { loading: false, countries: action.payload, fetched: true };
     case FAIL_COUNTRY_DATA:
-      return { loading: true, countries: [] };
+      return { loading: true, countries: [], fetched: false };
     default:
       return state;
   }

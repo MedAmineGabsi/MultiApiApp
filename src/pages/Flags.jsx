@@ -8,16 +8,20 @@ import { addCountries, getCountries } from "../actions/countries";
 
 const Flags = () => {
   const loading = useSelector((state) => state.countriesCounter.loading);
+  const fetched = useSelector((state) => state.countriesCounter.fetched);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getCountries());
-    axios
-      .get("https://restcountries.com/v2/all")
-      .then((res) => {
-        dispatch(addCountries(res.data));
-      })
-      .catch((err) => console.warn(err));
-  }, [dispatch]);
+    if (!fetched) {
+      dispatch(getCountries());
+      axios
+        .get("https://restcountries.com/v2/all")
+        .then((res) => {
+          dispatch(addCountries(res.data));
+        })
+        .catch((err) => console.warn(err));
+    }
+  });
   if (loading) {
     return (
       <div className="loading-container">
