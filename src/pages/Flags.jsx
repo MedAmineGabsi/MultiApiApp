@@ -14,7 +14,7 @@ const Flags = () => {
       .then((res) => {
         setCountries(res.data);
         console.log(res.data);
-        setLoading(true);
+        setLoading(false);
       })
       .catch((err) => console.warn(err));
   }, []);

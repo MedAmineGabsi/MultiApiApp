@@ -11,6 +11,7 @@
   height: 100vh;
   background-image: url("./earth.jpg");
   background-repeat: no-repeat;
+  max-height: 900vh;
 }
 
 .container {
