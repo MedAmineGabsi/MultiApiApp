@@ -25,6 +25,11 @@ const Countries = ({ country }) => {
           />
         </form>
       </div>
+      <div>
+        <h2 align="center" style={{ color: "#fff" }}>
+          {filteredCountry.length} country found
+        </h2>
+      </div>
       <div className="flex-container">
         {filteredCountry.map((e, index) => (
           <Card key={index} country={e} id={index} />

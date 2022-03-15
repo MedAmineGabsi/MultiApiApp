@@ -29,7 +29,7 @@ const Card = ({ country, id }) => {
           <img
             src={country.flag}
             style={{ height: "7rem", width: "12rem" }}
-            alt="drapeau"
+            alt={country.name}
           />
         </div>
       </div>
