@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Card from "./Card";
 import "./Countries.css";
 
-const Countries = ({ country }) => {
+const Countries = () => {
   const [search, setSearch] = useState("");
+  const country = useSelector((state) => state.countriesCounter.countries);
 
   const handleChange = (e) => {
     setSearch(e.target.value);

@@ -1,23 +1,23 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Loader from "../components/Loader";
 import Countries from "../components/Countries";
 import "./Loading.css";
+import { addCountries, getCountries } from "../actions/countries";
 
 const Flags = () => {
-  const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const loading = useSelector((state) => state.countriesCounter.loading);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getCountries());
     axios
       .get("https://restcountries.com/v2/all")
       .then((res) => {
-        setCountries(res.data);
-        console.log(res.data);
-        setLoading(false);
+        dispatch(addCountries(res.data));
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [dispatch]);
   if (loading) {
     return (
       <div className="loading-container">
@@ -27,7 +27,7 @@ const Flags = () => {
       </div>
     );
   } else {
-    return <Countries country={countries} />;
+    return <Countries />;
   }
 };
 
