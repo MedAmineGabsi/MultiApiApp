@@ -20,7 +20,7 @@ const Card = ({ country, id }) => {
           <div className="content">
             <h3 align="center">{country.name}</h3>
             <br />
-            <Link to={`/country/${id}`}>
+            <Link to={`/country/${country.name.toLowerCase()}`}>
               <button style={buttonStyle}>Get More Info</button>
             </Link>
           </div>

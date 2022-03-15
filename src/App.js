@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.css";
 import Corona from "./pages/Corona";
+import Country from "./pages/Country";
 import Flags from "./pages/Flags";
 import Home from "./pages/Home";
+import { Redirect } from "react-router-dom";
 
 const App = () => {
+  const countries = useSelector((state) => state.countriesCounter.countries);
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,6 +28,9 @@ const App = () => {
           </Route>
           <Route exact path="/country">
             <Flags />
+          </Route>
+          <Route exact path="/country/:name">
+            {countries.length === 0 ? <Redirect to="/country" /> : <Country />}
           </Route>
           <Route exact path="/covid">
             <Corona />

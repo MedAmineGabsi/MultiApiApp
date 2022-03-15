@@ -21,7 +21,7 @@ const Flags = () => {
         })
         .catch((err) => console.warn(err));
     }
-  });
+  }, [dispatch, fetched]);
   if (loading) {
     return (
       <div className="loading-container">
